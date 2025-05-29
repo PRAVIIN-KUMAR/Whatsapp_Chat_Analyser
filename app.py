@@ -4,36 +4,33 @@ import helper
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Page config for better look
-st.set_page_config(page_title="📊 WhatsApp Chat Analyzer", layout="wide",initial_sidebar_state="expanded"
+# Set page configuration
+st.set_page_config(
+    page_title="📊 WhatsApp Chat Analyzer",
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
-# Sidebar Styling & Content
+# Sidebar Title
 st.sidebar.title("💬 WhatsApp Chat Analyzer")
+
+# Sidebar Instructions
 st.sidebar.markdown(
     """
-    <div style="font-size:16px; line-height:1.6;">
-    Analyze your WhatsApp chats like a pro!  
-    Upload your exported chat file and explore:
-    <ul>
-        <li>📈 Detailed message stats</li>
-        <li>📅 Monthly & daily timelines</li>
-        <li>🔥 Activity heatmaps</li>
-        <li>🗣️ Most active users & word clouds</li>
-        <li>😊 Emoji usage insights</li>
-    </ul>
-    <b>How to use:</b><br>
-    1️⃣ Export your WhatsApp chat without media.<br>
-    2️⃣ Upload the chat (.txt) file here.<br>
-    3️⃣ Select a user or Overall.<br>
-    4️⃣ Click <b>Show Analysis</b> and explore!<br><br>
-    <i style="color:#666;">Made with ❤️ using Python & Streamlit</i>
-    </div>
-    """, unsafe_allow_html=True
+    Analyze your WhatsApp chats like a pro! 📈
+
+    **How to use:**
+    1. Export your WhatsApp chat without media.
+    2. Upload the chat `.txt` file here.
+    3. Select a user or 'Overall'.
+    4. Click **Show Analysis** and explore!
+
+    _Made with ❤️ using Python & Streamlit_
+    """
 )
 
-# File uploader with info
-uploaded_file = st.sidebar.file_uploader("Upload WhatsApp Chat File (.txt)", type=["txt"])
+# File uploader
+uploaded_file = st.sidebar.file_uploader("📂 Upload WhatsApp Chat File (.txt)", type=["txt"])
 
 if uploaded_file is not None:
     # Decode uploaded file
@@ -49,14 +46,14 @@ if uploaded_file is not None:
     user_list.sort()
     user_list.insert(0, "Overall")
 
-    selected_user = st.sidebar.selectbox("Select User for Analysis", user_list)
+    selected_user = st.sidebar.selectbox("👤 Select User for Analysis", user_list)
 
-    if st.sidebar.button("Show Analysis"):
+    if st.sidebar.button("🔍 Show Analysis"):
         st.markdown(f"## 📊 Analysis for: **{selected_user}**")
 
         num_messages, words, num_media_messages, num_links = helper.fetch_stats(selected_user, df)
 
-        col1, col2, col3, col4 = st.columns(4, gap="large")
+        col1, col2, col3, col4 = st.columns(4)
 
         with col1:
             st.metric(label="💬 Total Messages", value=num_messages)
@@ -92,16 +89,16 @@ if uploaded_file is not None:
 
         # Activity Map
         st.markdown("### 🔥 Activity Map")
-        col1, col2 = st.columns(2, gap="large")
+        col1, col2 = st.columns(2)
         with col1:
-            st.markdown("**Most Busy Day of Week**")
+            st.markdown("**📅 Most Busy Day of Week**")
             busy_day = helper.week_activity_map(selected_user, df)
             fig, ax = plt.subplots()
             sns.barplot(x=busy_day.index, y=busy_day.values, palette="viridis", ax=ax)
             ax.set_ylabel('Messages')
             st.pyplot(fig)
         with col2:
-            st.markdown("**Most Busy Month**")
+            st.markdown("**📆 Most Busy Month**")
             busy_month = helper.month_activity_map(selected_user, df)
             fig, ax = plt.subplots()
             sns.barplot(x=busy_month.index, y=busy_month.values, palette="magma", ax=ax)
@@ -119,7 +116,7 @@ if uploaded_file is not None:
         if selected_user == 'Overall':
             st.markdown("### 🏅 Most Busy Users")
             busy_users, user_df = helper.most_busy_users(df)
-            col1, col2 = st.columns([3, 2], gap="large")
+            col1, col2 = st.columns([3, 2])
             with col1:
                 fig, ax = plt.subplots(figsize=(8,4))
                 sns.barplot(x=busy_users.values, y=busy_users.index, palette='rocket', ax=ax)
@@ -148,7 +145,7 @@ if uploaded_file is not None:
         # Emoji Analysis
         emoji_df = helper.emoji_helper(selected_user, df)
         st.markdown("### 😍 Emoji Analysis")
-        col1, col2 = st.columns(2, gap="large")
+        col1, col2 = st.columns(2)
         with col1:
             st.dataframe(emoji_df)
         with col2:
