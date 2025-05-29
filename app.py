@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Page config for better look
-st.set_page_config(page_title="📊 WhatsApp Chat Analyzer", layout="wide")
+st.set_page_config(page_title="📊 WhatsApp Chat Analyzer", layout="wide",initial_sidebar_state="expanded"
+)
 
 # Sidebar Styling & Content
 st.sidebar.title("💬 WhatsApp Chat Analyzer")
