@@ -2,9 +2,9 @@
 
 A Streamlit web app that performs detailed analysis on WhatsApp group or personal chat exports. It displays message trends, user stats, most common words, emojis, and much more.
 
-## 🌐 Live Demo
+## 🌐 Live App
 
-👉 [Launch App on Streamlit](https://whatsappchatanalyser-4y87gxomjindfkrgxnhslj.streamlit.app/)
+[🔗 Open WhatsApp Chat Analyzer](https://whatsappchatanalyser-4y87gxomjindfkrgxnhslj.streamlit.app/)
 
 ---
 
