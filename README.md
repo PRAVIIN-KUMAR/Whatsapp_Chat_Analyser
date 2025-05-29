@@ -4,7 +4,7 @@ A Streamlit web app that performs detailed analysis on WhatsApp group or persona
 
 ## 🌐 Live App
 
-[🔗 Open WhatsApp Chat Analyzer](https://whatsappchatanalyser-4y87gxomjindfkrgxnhslj.streamlit.app/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://whatsappchatanalyser-4y87gxomjindfkrgxnhslj.streamlit.app/)
 
 ---
 
